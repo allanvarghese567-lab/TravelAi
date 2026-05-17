@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: travel_ai
+
+  redis:
+    image: redis:7
+
+  kafka:
+    image: bitnami/kafka
+
+  api-gateway:
+    build:
+      context: ../../
+      dockerfile: apps/api-gateway/Dockerfile
+
+  auth-service:
+    build:
+      context: ../../
+      dockerfile: apps/auth-service/Dockerfile
+
+  trip-service:
+    build:
+      context: ../../
+      dockerfile: apps/trip-service/Dockerfile
