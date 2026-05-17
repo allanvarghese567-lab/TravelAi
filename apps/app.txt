@@ -1,2 +1,33 @@
 
 app description
+apps/
+
+  api-gateway/src/
+    main.ts
+    app.module.ts
+    app.controller.ts
+    app.service.ts
+
+  auth-service/src/
+    main.ts
+    auth.module.ts
+    auth.controller.ts
+    auth.service.ts
+
+  itinerary-service/src/
+    main.ts
+    itinerary.module.ts
+    itinerary.controller.ts
+    itinerary.service.ts
+
+  location-service/src/
+    main.ts
+    location.module.ts
+    location.controller.ts
+    location.service.ts
+
+  recommendation-service/src/
+    main.ts
+    recommendation.module.ts
+    recommendation.controller.ts
+    recommendation.service.ts
