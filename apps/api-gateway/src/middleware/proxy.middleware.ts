@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import{ServiceConstant} from '@shared/index';
 
 export function authMiddleware(req: Request, res: Response, next: NextFunction) {
   const publicPaths = ['/auth/login', '/auth/register', '/docs'];
