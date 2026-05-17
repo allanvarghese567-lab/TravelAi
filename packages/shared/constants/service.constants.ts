@@ -45,4 +45,13 @@ export class ServiceConstants {
     GENERATE: 'recommendations/generate',
     TRENDING: 'recommendations/trending',
   };
+
+  static readonly SERVICE_CONFIG ={
+    App_Title:'Travel AI Platform',
+    Auth_Title:'',
+    Itineray_Title:'',
+    Location_Title:'',
+    Recommendation_Title:'',
+    Trip_Title:'',
+  };
 }

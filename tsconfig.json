@@ -11,7 +11,12 @@
 
     "emitDecoratorMetadata": true,
 
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "paths": {
+      "@shared/*": ["packages/shared/src/*"],
+      "@travelai/*": ["apps/*"]
+
+    }
 
   }
 }

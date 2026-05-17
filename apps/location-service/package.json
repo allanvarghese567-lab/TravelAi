@@ -2,7 +2,9 @@
   "name": "location-service",
   "version": "1.0.0",
   "scripts": {
-    "start": "nest start"
+    "dev": "nest start --watch",
+    "build": "nest build",
+    "start": "node dist/main.js"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
