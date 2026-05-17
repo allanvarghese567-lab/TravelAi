@@ -1,30 +1,31 @@
-import { NestFactory }
-from '@nestjs/core';
+import { NestFactory } from '@nestjs/core';
+
+import {
+  SwaggerModule,
+  DocumentBuilder,
+} from '@nestjs/swagger';
 
 import { AppModule }
 from './app.module';
 
-import {
-
-  SwaggerModule,
-  DocumentBuilder
-
-} from '@nestjs/swagger';
-
 async function bootstrap() {
 
   const app =
-    await NestFactory.create(AppModule);
+    await NestFactory.create(
+      AppModule,
+    );
+
+  app.enableCors();
 
   const config =
     new DocumentBuilder()
 
       .setTitle(
-        'Travel AI Platform'
+        'Travel AI API Gateway',
       )
 
       .setDescription(
-        'AI Travel SaaS APIs'
+        'Gateway APIs',
       )
 
       .setVersion('1.0')
@@ -36,18 +37,16 @@ async function bootstrap() {
   const document =
     SwaggerModule.createDocument(
       app,
-      config
+      config,
     );
 
   SwaggerModule.setup(
     'api',
     app,
-    document
+    document,
   );
 
-  await app.listen(
-    process.env.PORT || 3000
-  );
+  await app.listen(3000);
 
 }
 
