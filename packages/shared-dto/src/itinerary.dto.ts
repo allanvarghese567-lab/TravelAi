@@ -1,3 +1,5 @@
+import { ApiProperty }
+from '@nestjs/swagger';
 export class PlaceDto {
   id: string;
   title: string;

@@ -1,3 +1,5 @@
+import { ApiProperty }
+from '@nestjs/swagger';
 export class RecommendationRequestDto {
   tripId: string;
   currentLat: number;

@@ -1,3 +1,5 @@
+import { ApiProperty }
+from '@nestjs/swagger';
 export enum TripEvents {
   LOCATION_UPDATED = "location.updated",
   TRIP_CREATED = "trip.created",

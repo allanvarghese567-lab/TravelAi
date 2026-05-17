@@ -1,3 +1,5 @@
+import { ApiProperty }
+from '@nestjs/swagger';
 export class VehicleDto {
   type: 'car' | 'bike' | 'ev' | 'bus';
   brand?: string;
