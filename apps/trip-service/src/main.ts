@@ -7,12 +7,12 @@ import {
   DocumentBuilder,
 } from '@nestjs/swagger';
 
-import { AppModule } from './app.module';
+import { TripModule } from './trip.module';
 
 async function bootstrap() {
 
   const app =
-    await NestFactory.create(AppModule);
+    await NestFactory.create(TripModule);
 
   app.enableCors();
 
