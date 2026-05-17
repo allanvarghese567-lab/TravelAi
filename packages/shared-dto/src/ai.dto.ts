@@ -1,3 +1,5 @@
+import { ApiProperty }
+from '@nestjs/swagger';
 export class AITripRequestDto {
   source: string;
   destination: string;
