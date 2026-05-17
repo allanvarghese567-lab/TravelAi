@@ -1,4 +1,4 @@
-name: Render Deploy
+name: Render Deploy Pipeline
 
 on:
   push:
@@ -7,26 +7,45 @@ on:
 
 jobs:
 
-  test:
-
+  build:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout Repo
         uses: actions/checkout@v4
 
       - name: Setup Node
-
         uses: actions/setup-node@v4
-
         with:
           node-version: 20
+          cache: 'npm'
 
-      - name: Install Dependencies
+      - name: Clean Install Dependencies
+        run: npm ci
 
-        run: npm install
+      - name: Type Check (Fail Fast)
+        run: npx tsc --noEmit
 
-      - name: Build App
+      - name: Build API Gateway
+        run: npm run build --workspace=apps/api-gateway
 
-        run: npm run build
+      - name: Build Auth Service
+        run: npm run build --workspace=apps/auth-service
+
+      - name: Build Location Service
+        run: npm run build --workspace=apps/location-service
+
+      - name: Build Itinerary Service
+        run: npm run build --workspace=apps/itinerary-service
+
+      - name: Build Recommendation Service
+        run: npm run build --workspace=apps/recommendation-service
+
+      - name: Build Trip Service
+        run: npm run build --workspace=apps/trip-service
+
+      - name: Detect Changed Services
+        id: set
+        run: |
+          npm run changed:services > services.txt
+          echo "services=$(cat services.txt)" >> $GITHUB_OUTPUT

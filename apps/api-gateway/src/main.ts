@@ -7,14 +7,14 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    .setTitle('Travel AI Platform')
-    .setDescription('Unified API Gateway')
-    .setVersion('1.0')
-    .addTag('auth')
-    .addTag('location')
-    .addTag('trip')
-    .addTag('itinerary')
-    .addTag('recommendation')
+    .setTitle(ServiceConstants.SERVICE_CONFIG.app.title)
+    .setDescription(ServiceConstants.SERVICE_CONFIG.app.desc)
+    .setVersion(ServiceConstants.SERVICE_CONFIG.app.version)
+    .addTag(ServiceConstants.AUTH_SERVICE)
+    .addTag(ServiceConstants.LOCATION_SERVICE)
+    .addTag(ServiceConstants.TRIP_SERVICE)
+    .addTag(ServiceConstants.ITINERARY_SERVICE)
+    .addTag(ServiceConstants.RECOMMENDATION_SERVICE)
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

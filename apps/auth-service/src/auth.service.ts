@@ -1,38 +1,25 @@
+import { SessionStore, Session,AuthRole } from '@shared/index';
+import { generateSessionId } from '@shared/index';
 import { Injectable }
 from '@nestjs/common';
-
 @Injectable()
-
 export class AuthService {
+  async login(email: string, password: string) {
 
-  signup(dto: any) {
+    const sessionId = generateSessionId();
 
-    return {
-
-      success: true,
-
-      message:
-        'User registered',
-
-      user: dto,
-
+    const user: Session = {
+      sessionId,
+      userId: '1',
+      email: email,
+      role: AuthRole.user,
+      createdAt: Date.now(),
     };
 
-  }
-
-  login(dto: any) {
+    SessionStore.create(user);
 
     return {
-
-      success: true,
-
-      token:
-        'jwt-token',
-
-      user: dto.email,
-
+      sessionId,
     };
-
   }
-
-}
+};
