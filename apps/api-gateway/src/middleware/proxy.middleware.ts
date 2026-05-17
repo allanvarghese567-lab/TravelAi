@@ -1,46 +1,21 @@
 import { Request, Response, NextFunction } from 'express';
-import axios from 'axios';
-import { services } from '../config/services';
+import jwt from 'jsonwebtoken';
 
-function getServiceKey(path: string): keyof typeof services | null {
-  if (path.startsWith('/auth')) return 'auth';
-  if (path.startsWith('/location')) return 'location';
-  if (path.startsWith('/itinerary')) return 'itinerary';
-  if (path.startsWith('/recommendation')) return 'recommendation';
+export function authMiddleware(req: Request, res: Response, next: NextFunction) {
+  const publicPaths = ['/auth/login', '/auth/register', '/docs'];
 
-  return null;
-}
+  if (publicPaths.includes(req.path)) return next();
 
-export async function proxyMiddleware(
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) {
-  const serviceKey = getServiceKey(req.path);
+  const token = req.headers['authorization'];
 
-  if (!serviceKey) return next();
-
-  const target = services[serviceKey];
-
-  if (!target) {
-    return res.status(500).json({ error: 'Service not configured' });
+  if (!token) {
+    return res.status(401).json({ message: 'Missing token' });
   }
 
   try {
-    const response = await axios({
-      method: req.method as any,
-      url: `${target}${req.originalUrl}`,
-      data: req.body,
-      headers: {
-        ...req.headers,
-        host: undefined,
-      },
-    });
-
-    return res.status(response.status).json(response.data);
-  } catch (error: any) {
-    return res.status(error?.response?.status || 500).json({
-      error: error.message,
-    });
+    jwt.verify(token.replace('Bearer ', ''), process.env.JWT_SECRET!);
+    next();
+  } catch {
+    return res.status(401).json({ message: 'Invalid token' });
   }
 }

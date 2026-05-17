@@ -1,1 +1,27 @@
-
+api-gateway/
+│
+├── src/
+│   ├── main.ts
+│   ├── app.module.ts
+│
+│   ├── config/
+│   │   ├── services.ts
+│   │   ├── env.ts
+│
+│   ├── middleware/
+│   │   ├── proxy.middleware.ts
+│   │   ├── auth.middleware.ts
+│   │   ├── logger.middleware.ts
+│
+│   ├── guards/
+│   │   ├── jwt.guard.ts
+│
+│   ├── core/
+│   │   ├── circuit-breaker.ts
+│   │   ├── retry.ts
+│
+│   ├── swagger/
+│   │   ├── swagger.ts
+│
+│   ├── utils/
+│       ├── request.ts
