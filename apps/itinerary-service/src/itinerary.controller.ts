@@ -1,38 +1,48 @@
 import {
+
+  Body,
   Controller,
-  Get
+  Post,
+
 } from '@nestjs/common';
 
 import {
+
   ApiTags,
   ApiOperation,
-  ApiResponse
+
 } from '@nestjs/swagger';
 
-import { AppService } from './app.service';
+import { ItineraryService }
+from './itinerary.service';
 
-@ApiTags('App')
+@ApiTags('Itinerary')
 
-@Controller()
-export class AppController {
+@Controller('itinerary')
+
+export class ItineraryController {
 
   constructor(
-    private readonly appService: AppService
+
+    private readonly itineraryService:
+      ItineraryService,
+
   ) {}
 
-  @Get()
+  @Post()
 
   @ApiOperation({
-    summary: 'Get application status'
+    summary:
+      'Create itinerary',
   })
 
-  @ApiResponse({
-    status: 200,
-    description: 'Application is running successfully'
-  })
+  create(
+    @Body() dto: any,
+  ) {
 
-  getHello() {
-    return this.appService.getHello();
+    return this.itineraryService
+      .create(dto);
+
   }
 
 }
