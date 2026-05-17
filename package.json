@@ -22,11 +22,15 @@
 
   },
 
-  "dependencies": {
+"dependencies": {
 
-    "express": "^4.19.2"
+  "express": "^4.19.2",
 
-  },
+  "@nestjs/swagger": "^8.0.0",
+
+  "swagger-ui-express": "^5.0.1"
+
+},
 
   "devDependencies": {
 
